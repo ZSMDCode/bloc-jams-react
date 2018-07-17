@@ -9,7 +9,8 @@ class Album extends Component {
     this.state = {
       album: album,
       currentSong: album.songs[0],
-      isPlaying: false
+      isPlaying: false,
+      currentlyHovered: false
     };
     this.audioElement = document.createElement('audio');
     this.audioElement.src = album.songs[0].audioSrc;
@@ -23,18 +24,50 @@ class Album extends Component {
     this.setState({ isPlaying: false });
   }
   setSong(song) {
-     this.audioElement.src = song.audioSrc;
-     this.setState({ currentSong: song });
+    this.audioElement.src = song.audioSrc;
+    this.setState({ currentSong: song });
   }
   handleSongClick(song) {
-     const isSameSong = this.state.currentSong === song;
-     if (this.state.isPlaying && isSameSong) {
-       this.pause();
-     } else {
-       if (!isSameSong) { this.setSong(song); }     
-       this.play();
-     }
-   }
+    const isSameSong = this.state.currentSong === song;
+    if (this.state.isPlaying && isSameSong) {
+      this.pause();
+    } else {
+      if (!isSameSong) { this.setSong(song); }
+      this.play();
+    }
+  }
+  handleSongHover(index) {
+    console.log("I'm hovered over!");
+    console.log(this.state.isPlaying);
+    console.log(this.state.currentlyHovered);
+    this.setState({ currentlyHovered: index});
+  }
+  handleSongUnhovered(index) {
+    console.log("I'm unhovered!");
+    console.log(this.state.isPlaying);
+    console.log(this.state.currentlyHovered);
+    this.setState({ currentlyHovered: false});
+  }
+  buttonHovered(song, index) {
+    console.log(index);
+    if (this.state.isPlaying === true && this.state.currentSong === song){
+      console.log("Pause");
+      return <span className="icon ion-md-pause"></span>
+    }
+    else if (this.state.isPlaying === false && this.state.currentSong === song)
+    {
+      console.log("Play");
+      return <span className="icon ion-md-play"></span>
+    }
+    else if (this.state.currentlyHovered === index)
+    {
+      console.log("Play");
+      return <span className="icon ion-md-play"></span>;
+    }
+    else
+    console.log("Index");
+    return <span>{index + 1}</span>
+  }
   render() {
     return (
       <section className="album">
@@ -55,8 +88,11 @@ class Album extends Component {
       <tbody>
       {
         this.state.album.songs.map((song, index)=>
-        <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
-        <td>{index+1}</td>
+        <tr className="song" key={index} onClick={() => this.handleSongClick(song)}
+        onMouseEnter={() => this.handleSongHover(song, index)}
+        onMouseLeave={() => this.handleSongUnhovered(song, index)}
+        >
+        <td>{this.buttonHovered(song,index)}</td>
         <td>{song.title}</td>
         <td>{song.duration}</td>
         </tr>
