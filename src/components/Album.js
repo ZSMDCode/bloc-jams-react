@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
+import PlayerBar from './PlayerBar';
 class Album extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +37,13 @@ class Album extends Component {
       this.play();
     }
   }
+  handlePrevClick() {
+    const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+    const newIndex = Math.max(0, currentIndex - 1);
+    const newSong = this.state.album.songs[newIndex];
+    this.setSong(newSong);
+    this.play();
+  }
   handleSongHover(index) {
     this.setState({ currentlyHovered: index});
   }
@@ -44,15 +52,15 @@ class Album extends Component {
   }
   buttonHovered(song, index) {
     if (this.state.isPlaying === true && this.state.currentSong === song){
-      return <span className="icon ion-md-pause"></span>
+      return <span className="ion-pause"></span>
     }
     else if (this.state.isPlaying === false && this.state.currentSong === song)
     {
-      return <span className="icon ion-md-play"></span>
+      return <span className="ion-play"></span>
     }
     else if (this.state.currentlyHovered === index)
     {
-      return <span className="icon ion-md-play"></span>;
+      return <span className="ion-play"></span>;
     }
     else
     return <span>{index + 1}</span>
@@ -89,6 +97,12 @@ class Album extends Component {
     }
     </tbody>
     </table>
+    <PlayerBar
+    isPlaying={this.state.isPlaying}
+    currentSong={this.state.currentSong}
+    handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+    handlePrevClick={() => this.handlePrevClick()}
+    />
     </section>
   );
 }
