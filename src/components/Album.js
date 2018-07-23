@@ -88,8 +88,14 @@ class Album extends Component {
   }
   formatTime(time){
     const minutes = Math.floor(time/60);
-    const seconds = Math.floor(time%60);
-    return (minutes + ":" + seconds || "-:--");
+    const seconds = ("0" + Math.floor(time%60)).slice(-2);
+    if (isNaN(time))
+    {
+      return "-:--"
+    }
+    else {
+      return (minutes + ":" + seconds);
+    }
   }
   handleSongHover(index) {
     this.setState({ currentlyHovered: index});
