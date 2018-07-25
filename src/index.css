@@ -1,5 +1,43 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Impact;
+  background-color: black;
+  color: red;
+  letter-spacing: 3px;
+}
+a:visited{
+  color:red
+}
+h1 {
+  text-decoration: underline overline;
+}
+.hero-title {
+  text-decoration: none;
+}
+h2 {
+  color: #f28f85;
+  font-weight: bold;
+}
+
+#album-cover-art{
+  display: block;
+  margin-left: 3px;
+  margin-right: auto;
+  outline:solid;
+}
+.library-image {
+  display: block;
+  margin-left: 3px;
+  margin-right: auto;
+  outline:solid;
+}
+.player-bar {
+  text-align: left;
+}
+.player-bar button {
+  color: red;
+}
+#volume-control {
+  color: red;
 }
