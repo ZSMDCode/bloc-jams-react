@@ -13,7 +13,7 @@ class App extends Component {
       <Link to='/'>Landing</Link>
       <Link to='/library'>Library</Link>
       </nav>
-      <h1>Music Player</h1>
+      <h1>Alphagility Music Player</h1>
       </header>
       <main>
       <Route exact path="/" component={Landing} />
