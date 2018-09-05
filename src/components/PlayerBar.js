@@ -5,13 +5,13 @@ class PlayerBar extends Component {
       <section className="player-bar">
       <section id="buttons">
       <button id="previous" onClick={this.props.handlePrevClick}>
-      <span className="ion-skip-backward"></span>
+      <span>{"|<"}</span>
       </button>
       <button id="play-pause" onClick={this.props.handleSongClick}>
-      <span className={this.props.isPlaying ? 'ion-pause' : 'ion-play'}></span>
+      <span>{this.props.isPlaying ? "||" : ">"}</span>
       </button>
       <button id="next" onClick={this.props.handleNextClick}>
-      <span className="ion-skip-forward"></span>
+      <span>{">|"}</span>
       </button>
       </section>
       <section id="time-control">
@@ -28,7 +28,6 @@ class PlayerBar extends Component {
       <div className="total-time">{" Total Time: "}{this.props.formatTime(this.props.duration)}</div>
       </section>
       <section id="volume-control">
-      <div className="icon ion-volume-low"> {this.props.volume || 0}</div>
       <input type="range"
       className="seek-bar"
       value={(this.props.volume || 0)}
@@ -37,7 +36,7 @@ class PlayerBar extends Component {
       step="0.1"
       onChange={this.props.handleVolumeChange}
       />
-      <div className="icon ion-volume-high">{this.props.volume}</div>
+      <div>{"Volume = " + this.props.volume}</div>
       </section>
       </section>
     );

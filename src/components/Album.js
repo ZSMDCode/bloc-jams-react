@@ -105,15 +105,15 @@ class Album extends Component {
   }
   buttonHovered(song, index) {
     if (this.state.isPlaying === true && this.state.currentSong === song){
-      return <span className="ion-pause"></span>
+      return <span>{'||'}</span>
     }
     else if (this.state.isPlaying === false && this.state.currentSong === song)
     {
-      return <span className="ion-play"></span>
+      return <span>{'>'}</span>
     }
     else if (this.state.currentlyHovered === index)
     {
-      return <span className="ion-play"></span>;
+      return <span>{'>'}</span>;
     }
     else
     return <span>{index + 1}</span>
