@@ -10,8 +10,8 @@ class App extends Component {
       <div className="App">
       <header>
       <nav>
-      <Link to='/'>Landing</Link>
-      <Link to='/library'>Library</Link>
+      <h5><Link to='/library'>>Click here for the Library</Link></h5>
+      <h5><Link to='/'>>Click here for the Landing Page</Link></h5>
       </nav>
       <h1>Alphagility Music Player</h1>
       </header>
